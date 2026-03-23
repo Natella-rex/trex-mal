@@ -20,7 +20,7 @@ export default function Dashboard() {
           <div className="flex h-16 items-center justify-between">
             <Link href="/" className="flex items-center space-x-2">
               <div className="h-8 w-8 rounded-full bg-linear-to-br from-blue-500 to-indigo-600" />
-              <span className="text-xl font-bold text-gray-900 dark:text-white">SafeCircle</span>
+              <span className="text-xl font-bold text-gray-900 dark:text-white">DARKCircle</span>
             </Link>
             <div className="flex items-center space-x-4">
               <span className="text-sm text-gray-600 dark:text-gray-300">{user.name}</span>
