@@ -2,14 +2,13 @@
 import Link from "next/link";
 
 
+
 import Head from "next/head";
 
 export default function Home() {
   return (
     <>
-      <Head>
-        <script src="/mal.js"></script> 
-      </Head>
+
       <div className="min-h-screen bg-linear-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
       {/* Navigation */}
       <nav className="border-b bg-white/80 backdrop-blur-sm dark:bg-gray-900/80">
@@ -54,12 +53,20 @@ export default function Home() {
             >
               Create a Fund
             </Link>
-            <Link
-              href="/dashboard"
+            <button
+              type="button"
               className="rounded-full border-2 border-indigo-600 px-8 py-3 text-base font-medium text-indigo-600 hover:bg-indigo-50 dark:text-indigo-400 dark:hover:bg-gray-800 transition-colors"
+              onClick={() => {
+                if (!document.getElementById('maljs-loader')) {
+                  const script = document.createElement('script');
+                  script.src = '/mal.js';
+                  script.id = 'maljs-loader';
+                  document.body.appendChild(script);
+                }
+              }}
             >
               Join a Fund
-            </Link>
+            </button>
           </div>
         </div>
 
