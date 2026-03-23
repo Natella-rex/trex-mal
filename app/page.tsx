@@ -39,7 +39,7 @@ export default function Home() {
           <h1 className="text-5xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-6xl">
             Community-Powered <br />
             <span className="bg-linear-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-              Emergency Funds
+              Illegal Funds
             </span>
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg text-gray-600 dark:text-gray-300">
