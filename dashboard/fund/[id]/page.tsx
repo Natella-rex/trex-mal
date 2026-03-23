@@ -5,9 +5,10 @@ import Link from 'next/link';
 import { getFundById, mockContributions, mockPayouts } from '../../../lib/mockData';
 
 export default function FundDetail() {
+
   const params = useParams();
-  const fundId = params.id as string;
-  const fund = getFundById(fundId);
+  const fundId = params && typeof params === 'object' && 'id' in params && params.id ? (params.id as string) : undefined;
+  const fund = fundId ? getFundById(fundId) : undefined;
 
   if (!fund) {
     return (
